@@ -1,0 +1,16 @@
+provider:
+  name: faas
+  gateway: http://localhost:8080
+
+functions:
+  gobuster:
+    lang: Dockerfile
+    handler: ./faas-gobuster
+    image: devalias/faas-gobuster
+    environment:
+      # Watchdog Env Overrides (https://github.com/openfaas/faas/tree/master/watchdog)
+      suppress_lock: true
+      read_timeout: 30
+      write_timeout: 120
+      exec_timeout: 160
+      write_debug: false
